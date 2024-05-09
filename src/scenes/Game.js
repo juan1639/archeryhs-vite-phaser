@@ -55,6 +55,7 @@ export class Game extends Scene
     this.marcadorPtos.create();
     this.marcadorNombre.create();
     this.marcadorHi.create();
+    this.marcadorGrados.create();
     this.botonfullscreen.create();
     // this.botonesc.create();
 
@@ -86,6 +87,7 @@ export class Game extends Scene
 
   check_controles()
   {
+    const maxGrados = Settings.flecha.maxGrados;
     const tecla = Settings.queTeclaPulsar[0];
 
     if (
@@ -96,8 +98,10 @@ export class Game extends Scene
     }
 
     if (
-      this.flecha.get().getData('estado') === 'en-movimiento' &&
-      this.controles[tecla].isUp
+      (this.flecha.get().getData('estado') === 'en-movimiento' &&
+      this.controles[tecla].isUp) ||
+      (this.flecha.get().getData('estado') === 'en-movimiento' &&
+      Settings.getGrados() >= maxGrados)
     ){
       this.flecha.get().setData('estado', 'en-movimiento-2');
     }
@@ -106,6 +110,7 @@ export class Game extends Scene
     {
       Settings.setGrados(Settings.getGrados() + 1);
       // console.log(Settings.getGrados());
+      this.marcadorGrados.update('Deg: ', Settings.getGrados());
     }
   }
 
@@ -198,6 +203,10 @@ export class Game extends Scene
 
     this.marcadorNombre = new Marcador(this, {
       x: Math.floor(ancho / 1.35), y: marcadoresPosY, size: 40, txt: ' ', color: '#ff5', strokeColor: '#16d', id: 1
+    });
+
+    this.marcadorGrados = new Marcador(this, {
+      x: 10, y: marcadoresPosY + 90, size: 50, txt: 'Deg: ', color: '#fff', strokeColor: '#f51', id: 3
     });
 
     this.botonfullscreen = new BotonFullScreen(this, {

@@ -52,7 +52,9 @@ export class Settings
         iniY: Math.floor(Settings.screen.height / 2),
         scl: [1, 1],
         vel: 4,
-        grados: 0
+        grados: 0,
+        maxGrados: 40,
+        perfectGrados: 20
     };
 
     static pausa =
