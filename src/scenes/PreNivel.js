@@ -39,14 +39,14 @@ export class PreNivel extends Scene
             left: Math.floor(this.sys.game.config.width / 15),
             top: Math.floor(this.sys.game.config.height / 6),
             addLeft: 0, orX: 0, orY: 0.5, frame: 1, scale: 1,
-            txtSize: 50, texto: ' Keyboard cursors ', id: 'keyboard-control'
+            txtSize: 45, texto: ' Keyboard cursors/space', id: 'keyboard-control'
         }));
 
         this.radiobuttons.push(new ElegirControles(this, {
             left: Math.floor(this.sys.game.config.width / 15),
             top: Math.floor(this.sys.game.config.height / 3.2),
             addLeft: 0, orX: 0, orY: 0.5, frame: 0, scale: 1,
-            txtSize: 50, texto: ' Mobile controls ', id: 'mobile-control'
+            txtSize: 50, texto: ' Mobile (touch) ', id: 'mobile-control'
         }));
 
         this.radioFps = [];

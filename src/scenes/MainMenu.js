@@ -80,7 +80,7 @@ export class MainMenu extends Scene
 
         this.hacerFetchRecords(); */
 
-        this.sonido_overture = this.sound.add('overture');
+        Settings.audio.overture = this.sound.add('overture');
 
         const aparecerBoton = 1800; // 1800
 
@@ -147,8 +147,8 @@ export class MainMenu extends Scene
 
         showRecordsClock.repeat(-1).play();
 
-        play_sonidos(this.sonido_overture, false, 0.8);
-        
+        play_sonidos(Settings.audio.overture, false, 0.8);
+
         console.log(this.txt);
     }
 

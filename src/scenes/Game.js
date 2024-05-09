@@ -6,8 +6,9 @@
 // ------------------------------------------------------------
 import { Scene } from 'phaser';
 import { Textos } from '../components/textos.js';
-import { Marcador } from './../components/marcador.js';
+import { Marcador } from '../components/marcador.js';
 import { Settings } from './settings.js';
+import { Flecha } from '../components/jugador.js';
 
 import {
   BotonNuevaPartida,
@@ -29,9 +30,12 @@ export class Game extends Scene
 
   init()
   {
+    Settings.audio.overture.volume = 0;
     Settings.setGameOver(false);
 
     this.set_pausaInicial(Settings.getPausaInicialDuracion());
+
+    this.flecha = new Flecha(this);
 
     this.instanciar_marcadores();
   }
@@ -45,12 +49,17 @@ export class Game extends Scene
     this.add.image(0, 0, 'fondo').setDepth(Settings.depth.fondo).setOrigin(0, 0);
 
     this.set_sonidos();
+    
+    this.flecha.create();
 
     this.marcadorPtos.create();
     this.marcadorNombre.create();
     this.marcadorHi.create();
     this.botonfullscreen.create();
     // this.botonesc.create();
+
+    this.controles = this.input.keyboard.createCursorKeys();
+    console.log(this.controles);
   }
 
   update()
@@ -70,7 +79,33 @@ export class Game extends Scene
 
     if (!Settings.isPausaInicial() && !Settings.isGameOver())
     {
-      // updates
+      this.check_controles();
+      console.log(this.flecha.get().getData('estado'));
+    }
+  }
+
+  check_controles()
+  {
+    const tecla = Settings.queTeclaPulsar[0];
+
+    if (
+      this.flecha.get().getData('estado') === 'en-arco' &&
+      this.controles[tecla].isDown
+    ){
+      this.flecha.get().setData('estado', 'en-movimiento');
+    }
+
+    if (
+      this.flecha.get().getData('estado') === 'en-movimiento' &&
+      this.controles[tecla].isUp
+    ){
+      this.flecha.get().setData('estado', 'en-movimiento-2');
+    }
+
+    if (this.flecha.get().getData('estado') === 'en-movimiento')
+    {
+      Settings.setGrados(Settings.getGrados() + 1);
+      // console.log(Settings.getGrados());
     }
   }
 

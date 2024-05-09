@@ -7,6 +7,8 @@ export class Settings
         keyboard: true
     };
 
+    static queTeclaPulsar = ['space', 'shift', 'up', 'down', 'right', 'left'];
+
     static screen =
     {
         width: 1024,
@@ -44,6 +46,15 @@ export class Settings
         alpha: 0.3
     };
 
+    static flecha =
+    {
+        iniX: 0,
+        iniY: Math.floor(Settings.screen.height / 2),
+        scl: [1, 1],
+        vel: 4,
+        grados: 0
+    };
+
     static pausa =
     {
         inicial: {
@@ -68,7 +79,8 @@ export class Settings
     static audio =
     {
         numKey: null,
-        key: null
+        key: null,
+        overture: null
     };
 
     // ---------------------------------------------------
@@ -129,6 +141,11 @@ export class Settings
         return Settings.txtScore;
     }
 
+    static getGrados()
+    {
+        return Settings.flecha.grados;
+    }
+
     // ---------------------------------------------------
     //  Setters
     // ---------------------------------------------------
@@ -175,5 +192,10 @@ export class Settings
     static setTop(top5)
     {
         Settings.top = top5;
+    }
+
+    static setGrados(degrees)
+    {
+        Settings.flecha.grados = degrees;
     }
 }
