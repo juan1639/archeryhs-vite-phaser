@@ -58,6 +58,15 @@ export class Settings
         perfectGrados: 20
     };
 
+    static diana =
+    {
+        iniX: Math.floor(Settings.screen.width),
+        iniY: 200,
+        scl: [1, 1],
+        origin: [1, 0.5],
+        vel: 10
+    };
+
     static pausa =
     {
         inicial: {

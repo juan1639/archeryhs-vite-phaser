@@ -9,6 +9,7 @@ import { Textos } from '../components/textos.js';
 import { Marcador } from '../components/marcador.js';
 import { Settings } from './settings.js';
 import { Flecha } from '../components/jugador.js';
+import { Diana } from '../components/diana.js';
 
 import {
   BotonNuevaPartida,
@@ -36,6 +37,7 @@ export class Game extends Scene
     this.set_pausaInicial(Settings.getPausaInicialDuracion());
 
     this.flecha = new Flecha(this);
+    this.diana = new Diana(this);
 
     this.instanciar_marcadores();
   }
@@ -49,6 +51,7 @@ export class Game extends Scene
     this.set_sonidos();
     
     this.flecha.create();
+    this.diana.create();
 
     this.marcadorPtos.create();
     this.marcadorNombre.create();

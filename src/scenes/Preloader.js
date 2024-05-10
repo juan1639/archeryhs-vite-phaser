@@ -61,6 +61,7 @@ export class Preloader extends Scene
         this.load.spritesheet('boton-fullscreen', './img/boton-fullscreen.png', {frameWidth: 64, frameHeight: 64});
 
         this.load.image('flecha', './img/flecha-v2.png');
+        this.load.image('diana', './img/diana.png');
 
         this.load.image('particula1', './img/particula1.png');
 
