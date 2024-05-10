@@ -44,8 +44,6 @@ export class Game extends Scene
 
   create()
   {
-    const boundsXY = [Settings.screen.escBoundsX, Settings.screen.escBoundsY];
-
     this.add.image(0, 0, 'fondo').setDepth(Settings.depth.fondo).setOrigin(0, 0);
 
     this.set_sonidos();
@@ -58,6 +56,8 @@ export class Game extends Scene
     this.marcadorGrados.create();
     this.botonfullscreen.create();
     // this.botonesc.create();
+
+    this.texto_info('Info');
 
     this.controles = this.input.keyboard.createCursorKeys();
     console.log(this.controles);
@@ -80,13 +80,19 @@ export class Game extends Scene
 
     if (!Settings.isPausaInicial() && !Settings.isGameOver())
     {
-      this.check_controles();
+      this.check_controlesKeyboard();
+      this.check_controlesMobile();
+
+      this.flecha.update();
+
       console.log(this.flecha.get().getData('estado'));
     }
   }
 
-  check_controles()
+  check_controlesKeyboard()
   {
+    if (!Settings.controlElegido.keyboard) return;
+
     const maxGrados = Settings.flecha.maxGrados;
     const tecla = Settings.queTeclaPulsar[0];
 
@@ -95,6 +101,7 @@ export class Game extends Scene
       this.controles[tecla].isDown
     ){
       this.flecha.get().setData('estado', 'en-movimiento');
+      play_sonidos(this.sonido_arrow1, false, 0.9);
     }
 
     if (
@@ -110,7 +117,38 @@ export class Game extends Scene
     {
       Settings.setGrados(Settings.getGrados() + 1);
       // console.log(Settings.getGrados());
-      this.marcadorGrados.update('Deg: ', Settings.getGrados());
+      this.marcadorGrados.update('Deg: ', `${Settings.getGrados()}º`);
+    }
+  }
+
+  check_controlesMobile()
+  {
+    if (!Settings.controlElegido.mobile) return;
+
+    const maxGrados = Settings.flecha.maxGrados;
+
+    if (
+      this.flecha.get().getData('estado') === 'en-arco' &&
+      this.input.activePointer.isDown
+    ){
+      this.flecha.get().setData('estado', 'en-movimiento');
+      play_sonidos(this.sonido_arrow1, false, 0.9);
+    }
+
+    if (
+      (this.flecha.get().getData('estado') === 'en-movimiento' &&
+      !this.input.activePointer.isDown) ||
+      (this.flecha.get().getData('estado') === 'en-movimiento' &&
+      Settings.getGrados() >= maxGrados)
+    ){
+      this.flecha.get().setData('estado', 'en-movimiento-2');
+    }
+
+    if (this.flecha.get().getData('estado') === 'en-movimiento')
+    {
+      Settings.setGrados(Settings.getGrados() + 1);
+      // console.log(Settings.getGrados());
+      this.marcadorGrados.update('Deg: ', `${Settings.getGrados()}º`);
     }
   }
 
@@ -184,6 +222,36 @@ export class Game extends Scene
     
     this.txtcongrats.create();
     this.txtcongrats.get().setDepth(Settings.depth.textos);
+  }
+
+  texto_info(texto)
+  {
+    if (Settings.controlElegido.mobile)
+    {
+      texto = ' To Shoot an arrow \n touch and hold-touch ';
+    }
+    else
+    {
+      texto = ' To Shoot an arrow \n press space-bar \n and hold-press ';
+    }
+
+    this.txtInfo = new Textos(this, {
+      x: Math.floor(this.sys.game.config.width / 2),
+      y: Math.floor(this.sys.game.config.height / 1.18),
+      txt: texto,
+      size: 40, color: '#ffa', style: 'bold',
+      stroke: '#ef1', sizeStroke: 16,
+      shadowOsx: 2, shadowOsy: 2, shadowColor: '#111111',
+      bool1: false, bool2: true, origin: [0.5, 0.5],
+      elastic: false, dura: 0
+    });
+    
+    this.txtInfo.create();
+    this.txtInfo.get().setDepth(Settings.depth.textos);
+
+    this.tweens.add({
+      targets: this.txtInfo.get(), alpha: 0, duration: 9000
+    });
   }
 
   instanciar_marcadores()

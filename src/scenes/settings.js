@@ -51,7 +51,8 @@ export class Settings
         iniX: 0,
         iniY: Math.floor(Settings.screen.height / 2),
         scl: [1, 1],
-        vel: 4,
+        origin: [0.5, 0.5],
+        vel: 10,
         grados: 0,
         maxGrados: 40,
         perfectGrados: 20
