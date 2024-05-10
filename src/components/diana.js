@@ -10,12 +10,14 @@ export class Diana
     create()
     {
         const scale = Settings.getScaleGame();
-        const {iniX, iniY, scl, origin} = Settings.diana;
+        const {iniX, iniY, scl, origin, vel} = Settings.diana;
 
         this.diana = this.relatedScene.physics.add.sprite(iniX, iniY, 'diana');
         
         this.diana.setOrigin(origin[0], origin[1]).setScale(scl[0], scl[1]);
         this.diana.setDepth(Settings.depth.diana);
+        this.diana.setY(iniY);
+        this.diana.setData('vel', vel);
 
         // this.diana.setX(Math.floor(this.diana.width / 2));
 
@@ -23,6 +25,36 @@ export class Diana
         this.diana.setData('estado', 'parada');
 
         console.log(this.diana);
+    }
+
+    update()
+    {
+        this.diana.y += this.diana.getData('vel');
+
+        if (this.diana.y >= this.relatedScene.sys.game.config.height + this.diana.height)
+        {
+            this.diana.y = -this.diana.height;
+            this.another_arrow();
+            this.reset_degrees();
+        }
+    }
+
+    another_arrow()
+    {
+        const flechas = Settings.getCargadorNumFlechas();
+        const posInicialX = this.relatedScene.flecha.get().getData('width');
+
+        this.relatedScene.cargador.get().getChildren()[flechas - 1].setVisible(false);
+        Settings.setCargadorNumFlechas(flechas - 1);
+
+        this.relatedScene.flecha.get().setX(posInicialX);
+        this.relatedScene.flecha.get().setData('estado', 'en-arco');
+    }
+
+    reset_degrees()
+    {
+        Settings.setGrados(0);
+        this.relatedScene.marcadorGrados.update('Deg: ', `${Settings.getGrados()}º`);
     }
 
     get()

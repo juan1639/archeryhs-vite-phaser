@@ -89,6 +89,7 @@ export class Game extends Scene
       this.check_controlesMobile();
 
       this.flecha.update();
+      this.diana.update();
 
       console.log(this.flecha.get().getData('estado'));
     }

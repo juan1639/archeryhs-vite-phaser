@@ -48,7 +48,7 @@ export class Settings
 
     static flecha =
     {
-        iniX: 0,
+        iniX: -500,
         iniY: Math.floor(Settings.screen.height / 2),
         scl: [1, 1],
         origin: [1, 0.5],
@@ -73,10 +73,10 @@ export class Settings
     static diana =
     {
         iniX: Math.floor(Settings.screen.width),
-        iniY: 200,
+        iniY: Settings.screen.height + 150,
         scl: [1, 1],
         origin: [1, 0.5],
-        vel: 10
+        vel: 2
     };
 
     static pausa =
@@ -170,6 +170,11 @@ export class Settings
         return Settings.flecha.grados;
     }
 
+    static getCargadorNumFlechas()
+    {
+        return Settings.cargador.num_flechas;
+    }
+
     // ---------------------------------------------------
     //  Setters
     // ---------------------------------------------------
@@ -221,5 +226,10 @@ export class Settings
     static setGrados(degrees)
     {
         Settings.flecha.grados = degrees;
+    }
+
+    static setCargadorNumFlechas(num)
+    {
+        Settings.cargador.num_flechas = num;
     }
 }

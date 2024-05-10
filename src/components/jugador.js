@@ -18,7 +18,8 @@ export class Flecha
         this.flecha.setOrigin(origin[0], origin[1]).setScale(scl[0], scl[1]);
         this.flecha.setDepth(Settings.depth.flecha);
 
-        this.flecha.setX(Math.floor(this.flecha.width / 1));
+        this.flecha.setData('width', this.flecha.width);
+        // this.flecha.setX(Math.floor(this.flecha.width / 1));
 
         // ( en-arco, en-movimiento, en-movimiento-2, clavada )
         this.flecha.setData('estado', 'en-arco');
