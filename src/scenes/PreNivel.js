@@ -69,6 +69,12 @@ export class PreNivel extends Scene
     create ()
     {
         this.add.image(0, 0, 'fondo').setDepth(Settings.depth.fondo).setOrigin(0, 0);
+
+        this.add.image(
+            Math.floor(this.sys.game.config.width / 1.8),
+            Math.floor(this.sys.game.config.height / 1.5),
+            'archery-img'
+        ).setOrigin(0.5, 0.5).setDepth(Settings.depth.fondo + 20).setAlpha(0.8);
         
         this.radiobuttons.forEach(radiobutton => radiobutton.create());
         this.radioFps.forEach(fps => fps.create());

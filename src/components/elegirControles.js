@@ -29,6 +29,7 @@ export class ElegirControles
     });
 
     this.txt.create();
+    this.txt.get().setDepth(Settings.depth.textos);
 
     this.radiobutton.on('pointerover', () =>
     {

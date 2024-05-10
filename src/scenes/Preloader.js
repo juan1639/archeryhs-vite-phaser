@@ -53,6 +53,8 @@ export class Preloader extends Scene
 
         this.load.image('fondo', './img/fondo-verde.png');
 
+        this.load.image('archery-img', './img/archeryImg.png');
+
         this.load.image('boton-nueva-partida', './img/ui-newgame.png');
         this.load.image('boton-more-settings', './img/ui-newgame.png');
         this.load.spritesheet('radio-buttons', './img/radio-buttons-ssheet.png', {frameWidth: 50, frameHeight: 50});

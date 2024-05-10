@@ -1,7 +1,7 @@
 # Archery HS (very simple archery game)
-# based in classic game HyperSports of Konami 1984
+# Based in classic game HyperSports of Konami 1984
 
-https://juan1639.github.io/ArcheryHS-vite-phaser
+https://juan1639.github.io/archeryhs-vite-phaser
 
 <img src="/screenshot.png" alt="img my game"/>
 
