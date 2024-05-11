@@ -12,15 +12,10 @@ import { Arco } from '../components/arco.js';
 import { Flecha, CargadorFlechas } from '../components/jugador.js';
 import { Diana } from '../components/diana.js';
 import { DianaShow } from '../components/dianashow.js';
+import { BotonNuevaPartida, BotonFullScreen } from '../components/boton-nuevapartida.js';
 
 import {
-  BotonNuevaPartida,
-  BotonFullScreen,
-  BotonEsc, 
-  CrucetaControl
-} from '../components/boton-nuevapartida.js';
-
-import {
+  check_controlesKeyboard,
   play_sonidos
 } from '../functions/functions.js';
 
@@ -91,47 +86,13 @@ export class Game extends Scene
 
     if (!Settings.isPausaInicial() && !Settings.isGameOver())
     {
-      this.check_controlesKeyboard();
+      check_controlesKeyboard(this);
       this.check_controlesMobile();
 
       this.flecha.update();
       this.diana.update();
 
       console.log(this.flecha.get().getData('estado'));
-    }
-  }
-
-  check_controlesKeyboard()
-  {
-    if (!Settings.controlElegido.keyboard) return;
-
-    const maxGrados = Settings.flecha.maxGrados;
-    const tecla = Settings.queTeclaPulsar[0];
-
-    if (
-      this.flecha.get().getData('estado') === 'en-arco' &&
-      this.controles[tecla].isDown
-    ){
-      this.flecha.get().setData('estado', 'en-movimiento');
-      this.arco.get().setData('estado', 'sin-flecha');
-      this.arco.update(this.arco.get().getData('estado'));
-      play_sonidos(this.sonido_arrow1, false, 0.9);
-    }
-
-    if (
-      (this.flecha.get().getData('estado') === 'en-movimiento' &&
-      this.controles[tecla].isUp) ||
-      (this.flecha.get().getData('estado') === 'en-movimiento' &&
-      Settings.getGrados() >= maxGrados)
-    ){
-      this.flecha.get().setData('estado', 'en-movimiento-2');
-    }
-
-    if (this.flecha.get().getData('estado') === 'en-movimiento')
-    {
-      Settings.setGrados(Settings.getGrados() + 1);
-      // console.log(Settings.getGrados());
-      this.marcadorGrados.update('Deg: ', `${Settings.getGrados()}º`);
     }
   }
 

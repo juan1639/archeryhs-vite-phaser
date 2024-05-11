@@ -133,6 +133,12 @@ export class Settings
         overture: null
     };
 
+    static URL =
+    {
+        URL_G: 'https://ejemplo-node-railway-production.up.railway.app/all',
+        URL_P: 'https://ejemplo-node-railway-production.up.railway.app/create',
+    };
+
     // ---------------------------------------------------
     //  Getters
     // ---------------------------------------------------
@@ -204,6 +210,16 @@ export class Settings
     static getCargadorNumFlechas()
     {
         return Settings.cargador.num_flechas;
+    }
+
+    static getUrlGet()
+    {
+        return Settings.URL.URL_G;
+    }
+
+    static getUrlSendscore()
+    {
+        return Settings.URL.URL_P;
     }
 
     // ---------------------------------------------------
