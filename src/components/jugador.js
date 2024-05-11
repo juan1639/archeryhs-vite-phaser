@@ -33,18 +33,35 @@ export class Flecha
     {
         const vel = Settings.flecha.vel;
 
-        if (this.flecha.getData('estado').slice(0, 7) === 'en-movi')
+        if (this.flecha.getData('estado').slice(0, 7) === 'en-movi' || this.flecha.getData('estado') === 'clavada-no')
         {
             this.flecha.x += vel;
         }
 
         if (
             this.flecha.x >= this.relatedScene.sys.game.config.width &&
-            this.flecha.getData('estado') !== 'clavada'
+            this.flecha.getData('estado').slice(0, 7) !== 'clavada'
         ){
-            this.flecha.setData('estado', 'clavada');
-            play_sonidos(this.sonido_arrow2, false, 0.9);
+            if (this.check_impactoDiana())
+            {
+                this.flecha.setData('estado', 'clavada');
+                play_sonidos(this.sonido_arrow2, false, 0.9);
+            }
+            else
+            {
+                this.flecha.setData('estado', 'clavada-no');
+            }
         }
+    }
+    
+    check_impactoDiana()
+    {
+        if (Math.abs(this.relatedScene.diana.get().y - this.flecha.y) < Math.floor(this.relatedScene.diana.get().height / 2))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     get()
