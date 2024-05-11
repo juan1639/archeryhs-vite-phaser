@@ -37,6 +37,12 @@ export class GameOver
             play_sonidos(this.relatedScene.sonido_aplausosBirdie, false, 0.9);
         });
 
+        this.relatedScene.time.delayedCall(3500, () =>
+        {
+            this.relatedScene.botonrejugar.get().setVisible(true);
+            this.relatedScene.botonrejugar.txt.get().setVisible(true);
+        });
+
         console.log(this.txtgameover);
     }
 

@@ -66,7 +66,10 @@ export class Game extends Scene
     this.marcadorCurrent.create();
     this.botonfullscreen.create();
     // this.botonesc.create();
-    
+
+    this.botonrejugar.create();
+    this.botonrejugar.get().setVisible(false);
+
     this.texto_info('Info');
 
     this.controles = this.input.keyboard.createCursorKeys();
@@ -248,7 +251,7 @@ export class Game extends Scene
     }); */
 
     this.botonrejugar = new BotonNuevaPartida(this, {
-      left: Math.floor(this.sys.game.config.width / 2),
+      left: Math.floor(this.sys.game.config.width / 1.25),
       top: Math.floor(this.sys.game.config.height / 1.3),
       id: 'boton-nueva-partida',
       scX: 0.6, scY: 0.5, angle: 1, originX: 0.5, originY: 0.5,

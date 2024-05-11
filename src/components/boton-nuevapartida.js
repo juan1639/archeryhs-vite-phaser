@@ -36,6 +36,8 @@ export class BotonNuevaPartida
     this.txt.create();
     this.txt.get().setDepth(Settings.depth.textos).setAlpha(1).setScale(1);
 
+    if (texto === ' Continue ') this.txt.get().setVisible(false);
+
     this.boton.on('pointerover', () =>
     {
       // this.boton.setFrame(1);
