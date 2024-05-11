@@ -47,6 +47,14 @@ export class Settings
         alpha: 0.3
     };
 
+    static arco =
+    {
+        iniX: 0,
+        iniY: Math.floor(Settings.screen.height / 2),
+        scl: [1, 1],
+        origin: [0, 0.5]
+    };
+
     static flecha =
     {
         iniX: -500,
@@ -57,6 +65,15 @@ export class Settings
         grados: 0,
         maxGrados: 40,
         perfectGrados: 20
+    };
+
+    static estadosFlecha =
+    {
+        enArco: 'en-arco',
+        enMovimiento: 'en-movimiento',
+        enMovimiento2: 'en-movimiento-2',
+        clavada: 'clavada',
+        clavadaNo: 'clavada-no'
     };
 
     static cargador =
@@ -78,6 +95,14 @@ export class Settings
         scl: [1, 1],
         origin: [1, 0.5],
         vel: 2
+    };
+
+    static dianaShow =
+    {
+        iniX: Math.floor(Settings.screen.width / 2),
+        iniY: Math.floor(Settings.screen.height / 1.3),
+        scl: [1, 1],
+        origin: [0.5, 0.5]
     };
 
     static pausa =

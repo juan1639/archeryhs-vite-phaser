@@ -21,7 +21,7 @@ export class Flecha
         this.flecha.setData('width', this.flecha.width);
         // this.flecha.setX(Math.floor(this.flecha.width / 1));
 
-        // ( en-arco, en-movimiento, en-movimiento-2, clavada )
+        // ( en-arco, en-movimiento, en-movimiento-2, clavada, clavada-no )
         this.flecha.setData('estado', 'en-arco');
         
         this.sonido_arrow2 = this.relatedScene.sound.add('arrow-2');

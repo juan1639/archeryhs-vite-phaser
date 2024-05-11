@@ -1,15 +1,17 @@
 // ============================================================
 //      A R C H E R Y - HS  -->  Phaser  |  By Juan Eguia
 //   
-//      https://juan1639.github.io/PacClon2-vite-phaser
+//      https://juan1639.github.io/archeryhs-vite-phaser
 // 
 // ------------------------------------------------------------
 import { Scene } from 'phaser';
 import { Textos } from '../components/textos.js';
 import { Marcador } from '../components/marcador.js';
 import { Settings } from './settings.js';
+import { Arco } from '../components/arco.js';
 import { Flecha, CargadorFlechas } from '../components/jugador.js';
 import { Diana } from '../components/diana.js';
+import { DianaShow } from '../components/dianashow.js';
 
 import {
   BotonNuevaPartida,
@@ -37,9 +39,11 @@ export class Game extends Scene
     this.set_sonidos();
     this.set_pausaInicial(Settings.getPausaInicialDuracion());
 
+    this.arco = new Arco(this);
     this.flecha = new Flecha(this);
     this.cargador = new CargadorFlechas(this);
     this.diana = new Diana(this);
+    this.dianashow = new DianaShow(this);
 
     this.instanciar_marcadores();
   }
@@ -50,9 +54,11 @@ export class Game extends Scene
   {
     this.add.image(0, 0, 'fondo').setDepth(Settings.depth.fondo).setOrigin(0, 0);
 
+    this.arco.create();
     this.flecha.create();
     this.cargador.create();
     this.diana.create();
+    this.dianashow.create();
 
     this.marcadorPtos.create();
     this.marcadorNombre.create();
@@ -107,6 +113,8 @@ export class Game extends Scene
       this.controles[tecla].isDown
     ){
       this.flecha.get().setData('estado', 'en-movimiento');
+      this.arco.get().setData('estado', 'sin-flecha');
+      this.arco.update(this.arco.get().getData('estado'));
       play_sonidos(this.sonido_arrow1, false, 0.9);
     }
 
@@ -214,6 +222,8 @@ export class Game extends Scene
     this.tweens.add({
       targets: txtgo.get(), alpha: 0, duration: 1200
     });
+
+    this.dianashow.get().setVisible(true);
 
     play_sonidos(this.sonido_gooo, false, 0.9);
   }

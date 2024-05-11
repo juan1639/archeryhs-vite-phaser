@@ -37,6 +37,9 @@ export class Diana
         if (this.diana.y >= this.relatedScene.sys.game.config.height + this.diana.height)
         {
             this.diana.y = -this.diana.height;
+            
+            this.relatedScene.arco.get().setData('estado', 'con-flecha');
+            this.relatedScene.arco.update(this.relatedScene.arco.get().getData('estado'));
 
             if (Settings.getCargadorNumFlechas() > 0)
             {
