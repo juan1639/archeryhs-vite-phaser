@@ -45,10 +45,14 @@ export class Diana
             {
                 this.another_arrow();
                 this.reset_degrees();
+                this.reset_currentScore();
             }
             else
             {
                 console.log('fin');
+                this.reset_degrees();
+                this.reset_currentScore();
+                
                 Settings.setGameOver(true);
                 this.relatedScene.gameover.create();
 
@@ -77,6 +81,12 @@ export class Diana
     {
         Settings.setGrados(0);
         this.relatedScene.marcadorGrados.update('Deg: ', `${Settings.getGrados()}º`);
+    }
+
+    reset_currentScore()
+    {
+        Settings.setShowCurrent(0);
+        this.relatedScene.marcadorCurrent.update('Pts: ', Settings.getShowCurrent());
     }
 
     get()

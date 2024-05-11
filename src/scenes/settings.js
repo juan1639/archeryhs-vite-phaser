@@ -28,8 +28,8 @@ export class Settings
     static puntos = 0;
     static showCurrent = 0;
     static nombre = 'IMI';
-    static hi = 3000;
-    static top = [3000, 2000, 1800, 1750, 1500, 1400, 1300, 1250, 1100, 1000];
+    static hi = 1000;
+    static top = [1000, 900, 800, 750, 500, 400, 300, 250, 150, 100];
     static gameOver = false;
 
     static txtScore = 'Score: ';
@@ -85,7 +85,8 @@ export class Settings
         iniY: Math.floor(Settings.screen.height / 1.2),
         scl: [1, 1],
         origin: [0.5, 0.5],
-        angle: 90
+        angle: 90,
+        recargar_flechas: 10
     };
 
     static diana =

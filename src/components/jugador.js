@@ -45,6 +45,18 @@ export class Flecha
             if (this.check_impactoDiana())
             {
                 this.flecha.setData('estado', 'clavada');
+
+                const currentScore = this.calc_currentScore() + this.calc_currentScoreDeg();
+                Settings.setShowCurrent(currentScore);
+                this.relatedScene.marcadorCurrent.update('Pts: ', Settings.getShowCurrent());
+
+                Settings.setPuntos(Settings.getPuntos() + Settings.getShowCurrent());
+                this.relatedScene.marcadorPtos.update(Settings.getTxtScore(), Settings.getPuntos());
+
+                /* const tweensCurrent = this.relatedScene.tweens.add({
+                    targets: this.relatedScene.marcadorPtos.get(), 
+                }); */
+
                 play_sonidos(this.sonido_arrow2, false, 0.9);
             }
             else
@@ -69,6 +81,23 @@ export class Flecha
         }
 
         return false;
+    }
+
+    calc_currentScore()
+    {
+        const distanceToCenter = Math.abs(this.relatedScene.diana.get().y - this.flecha.y);
+        const currentScore = Math.floor(this.relatedScene.diana.get().height / 2) - distanceToCenter;
+
+        if (currentScore < 0) return 0;
+        return currentScore;
+    }
+
+    calc_currentScoreDeg()
+    {
+        const perfectGrados = Settings.flecha.perfectGrados;
+        const substract = perfectGrados - Math.abs(perfectGrados - Settings.getGrados());
+
+        return substract * 6; // *6 to make proportional to currentScore
     }
 
     get()

@@ -6,27 +6,28 @@ function check_controlesKeyboard(relatedScene)
 
   const maxGrados = Settings.flecha.maxGrados;
   const tecla = Settings.queTeclaPulsar[0];
+  const {enArco, enMovimiento, enMovimiento2} = Settings.estadosFlecha;
 
   if (
-    relatedScene.flecha.get().getData('estado') === 'en-arco' &&
+    relatedScene.flecha.get().getData('estado') === enArco &&
     relatedScene.controles[tecla].isDown
   ){
-    relatedScene.flecha.get().setData('estado', 'en-movimiento');
+    relatedScene.flecha.get().setData('estado', enMovimiento);
     relatedScene.arco.get().setData('estado', 'sin-flecha');
     relatedScene.arco.update(relatedScene.arco.get().getData('estado'));
     play_sonidos(relatedScene.sonido_arrow1, false, 0.9);
   }
 
   if (
-    (relatedScene.flecha.get().getData('estado') === 'en-movimiento' &&
+    (relatedScene.flecha.get().getData('estado') === enMovimiento &&
     relatedScene.controles[tecla].isUp) ||
-    (relatedScene.flecha.get().getData('estado') === 'en-movimiento' &&
+    (relatedScene.flecha.get().getData('estado') === enMovimiento &&
     Settings.getGrados() >= maxGrados)
   ){
-    relatedScene.flecha.get().setData('estado', 'en-movimiento-2');
+    relatedScene.flecha.get().setData('estado', enMovimiento2);
   }
 
-  if (relatedScene.flecha.get().getData('estado') === 'en-movimiento')
+  if (relatedScene.flecha.get().getData('estado') === enMovimiento)
   {
     Settings.setGrados(Settings.getGrados() + 1);
     // console.log(Settings.getGrados());
@@ -39,25 +40,28 @@ function check_controlesMobile(relatedScene)
   if (!Settings.controlElegido.mobile) return;
 
   const maxGrados = Settings.flecha.maxGrados;
+  const {enArco, enMovimiento, enMovimiento2} = Settings.estadosFlecha;
 
   if (
-    relatedScene.flecha.get().getData('estado') === 'en-arco' &&
+    relatedScene.flecha.get().getData('estado') === enArco &&
     relatedScene.input.activePointer.isDown
   ){
-    relatedScene.flecha.get().setData('estado', 'en-movimiento');
+    relatedScene.flecha.get().setData('estado', enMovimiento);
+    relatedScene.arco.get().setData('estado', 'sin-flecha');
+    relatedScene.arco.update(relatedScene.arco.get().getData('estado'));
     play_sonidos(relatedScene.sonido_arrow1, false, 0.9);
   }
 
   if (
-    (relatedScene.flecha.get().getData('estado') === 'en-movimiento' &&
+    (relatedScene.flecha.get().getData('estado') === enMovimiento &&
     !relatedScene.input.activePointer.isDown) ||
-    (relatedScene.flecha.get().getData('estado') === 'en-movimiento' &&
+    (relatedScene.flecha.get().getData('estado') === enMovimiento &&
     Settings.getGrados() >= maxGrados)
   ){
-    relatedScene.flecha.get().setData('estado', 'en-movimiento-2');
+    relatedScene.flecha.get().setData('estado', enMovimiento2);
   }
 
-  if (relatedScene.flecha.get().getData('estado') === 'en-movimiento')
+  if (relatedScene.flecha.get().getData('estado') === enMovimiento)
   {
     Settings.setGrados(Settings.getGrados() + 1);
     // console.log(Settings.getGrados());

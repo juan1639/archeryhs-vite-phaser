@@ -32,6 +32,8 @@ export class Game extends Scene
   {
     Settings.audio.overture.volume = 0;
     Settings.setGameOver(false);
+    Settings.setPuntos(0);
+    Settings.setCargadorNumFlechas(Settings.cargador.recargar_flechas);
 
     this.set_sonidos();
     this.set_pausaInicial(Settings.getPausaInicialDuracion());
