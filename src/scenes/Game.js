@@ -34,6 +34,7 @@ export class Game extends Scene
     Settings.audio.overture.volume = 0;
     Settings.setGameOver(false);
 
+    this.set_sonidos();
     this.set_pausaInicial(Settings.getPausaInicialDuracion());
 
     this.flecha = new Flecha(this);
@@ -49,8 +50,6 @@ export class Game extends Scene
   {
     this.add.image(0, 0, 'fondo').setDepth(Settings.depth.fondo).setOrigin(0, 0);
 
-    this.set_sonidos();
-    
     this.flecha.create();
     this.cargador.create();
     this.diana.create();
@@ -189,6 +188,9 @@ export class Game extends Scene
     ]);
 
     timeline.play();
+
+    play_sonidos(this.sonido_getReady, false, 0.8);
+
     console.log(this.txtpreparado);
   }
 
@@ -211,6 +213,8 @@ export class Game extends Scene
     this.tweens.add({
       targets: txtgo.get(), alpha: 0, duration: 1200
     });
+
+    play_sonidos(this.sonido_gooo, false, 0.9);
   }
 
   texto_enhorabuena()
@@ -311,5 +315,8 @@ export class Game extends Scene
     this.sonido_arrow1 = this.sound.add('arrow-1');
     this.sonido_arrow2 = this.sound.add('arrow-2');
     this.sonido_abucheos = this.sound.add('abucheos');
+    this.sonido_getReady = this.sound.add('get-ready');
+    this.sonido_gooo = this.sound.add('gooo');
+    this.sonido_fireworks = this.sound.add('fireworks');
   }
 }

@@ -76,6 +76,10 @@ export class Preloader extends Scene
         this.load.audio('arrow-2', './audio/arrow2.mp3');
         this.load.audio('abucheos', './audio/boooh.mp3');
         this.load.audio('overture', './audio/Overture.ogg');
+        this.load.audio('fireworks', './audio/fireworks.mp3');
+        this.load.audio('get-ready', './audio/get-ready.mp3');
+        this.load.audio('gooo', './audio/gooo.mp3');
+        this.load.audio('gameover', './audio/gameover.mp3');
     }
 
     create()
