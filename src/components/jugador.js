@@ -52,6 +52,11 @@ export class Flecha
                 this.flecha.setData('estado', 'clavada-no');
             }
         }
+
+        if (this.flecha.getData('estado') === 'clavada')
+        {
+            this.flecha.y += this.relatedScene.diana.get().getData('vel');
+        }
     }
     
     check_impactoDiana()

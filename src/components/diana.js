@@ -1,3 +1,4 @@
+import { play_sonidos } from '../functions/functions.js';
 import { Settings } from '../scenes/settings.js';
 
 export class Diana
@@ -29,13 +30,27 @@ export class Diana
 
     update()
     {
+        if (Settings.isGameOver()) return;
+
         this.diana.y += this.diana.getData('vel');
 
         if (this.diana.y >= this.relatedScene.sys.game.config.height + this.diana.height)
         {
             this.diana.y = -this.diana.height;
-            this.another_arrow();
-            this.reset_degrees();
+
+            if (Settings.getCargadorNumFlechas() > 0)
+            {
+                this.another_arrow();
+                this.reset_degrees();
+            }
+            else
+            {
+                console.log('fin');
+                Settings.setGameOver(true);
+                play_sonidos(this.relatedScene.sonido_gooo, false, 0.9);
+            }
+
+            play_sonidos(this.relatedScene.sonido_numkey, false, 0.9);
         }
     }
 
@@ -43,11 +58,13 @@ export class Diana
     {
         const flechas = Settings.getCargadorNumFlechas();
         const posInicialX = this.relatedScene.flecha.get().getData('width');
+        const posInicialY = Settings.flecha.iniY;
 
         this.relatedScene.cargador.get().getChildren()[flechas - 1].setVisible(false);
         Settings.setCargadorNumFlechas(flechas - 1);
 
         this.relatedScene.flecha.get().setX(posInicialX);
+        this.relatedScene.flecha.get().setY(posInicialY);
         this.relatedScene.flecha.get().setData('estado', 'en-arco');
     }
 
