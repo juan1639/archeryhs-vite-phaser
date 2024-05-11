@@ -79,7 +79,7 @@ export class PreNivel extends Scene
         this.radiobuttons.forEach(radiobutton => radiobutton.create());
         this.radioFps.forEach(fps => fps.create());
 
-        this.botonmoresettings.create();
+        // this.botonmoresettings.create();
         this.botoninicio.create();
     }
 }

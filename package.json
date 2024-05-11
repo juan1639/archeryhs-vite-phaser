@@ -1,11 +1,11 @@
 {
-    "name": "template-vite",
-    "description": "A Phaser 3 template using Vite.",
+    "name": "archeryhs",
+    "description": "A Phaser 3 template using Vite to program my game ArcheryHS",
     "version": "1.2.1",
     "type": "module",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/phaserjs/template-vite.git"
+        "url": "https://juan1639.github.io/archeryhs-vite-phaser"
     },
     "author": "Phaser Studio <support@phaser.io> (https://phaser.io/)",
     "license": "MIT",
@@ -16,9 +16,12 @@
     "homepage": "https://github.com/phaserjs/template-vite#readme",
     "scripts": {
         "dev": "vite --config vite/config.dev.mjs",
-        "build": "vite build --config vite/config.prod.mjs"
+        "build": "vite build --config vite/config.prod.mjs",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist"
     },
     "devDependencies": {
+        "gh-pages": "^6.1.1",
         "terser": "^5.28.1",
         "vite": "^5.1.4"
     },

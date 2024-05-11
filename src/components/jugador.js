@@ -53,9 +53,13 @@ export class Flecha
                 Settings.setPuntos(Settings.getPuntos() + Settings.getShowCurrent());
                 this.relatedScene.marcadorPtos.update(Settings.getTxtScore(), Settings.getPuntos());
 
-                /* const tweensCurrent = this.relatedScene.tweens.add({
-                    targets: this.relatedScene.marcadorPtos.get(), 
-                }); */
+                const tweensCurrent = this.relatedScene.tweens.add({
+                    targets: this.relatedScene.marcadorCurrent.get(),
+                    scale: 1.5,
+                    ease: 'elastic',
+                    yoyo: true,
+                    duration: 900
+                });
 
                 play_sonidos(this.sonido_arrow2, false, 0.9);
             }

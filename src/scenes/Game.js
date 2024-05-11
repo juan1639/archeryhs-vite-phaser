@@ -101,7 +101,7 @@ export class Game extends Scene
       this.flecha.update();
       this.diana.update();
 
-      console.log(this.flecha.get().getData('estado'));
+      // console.log(this.flecha.get().getData('estado'));
     }
   }
 
