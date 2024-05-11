@@ -50,7 +50,9 @@ export class Diana
             {
                 console.log('fin');
                 Settings.setGameOver(true);
-                play_sonidos(this.relatedScene.sonido_gooo, false, 0.9);
+                this.relatedScene.gameover.create();
+
+                play_sonidos(this.relatedScene.sonido_gameover, false, 0.9);
             }
 
             play_sonidos(this.relatedScene.sonido_numkey, false, 0.9);

@@ -105,6 +105,17 @@ export class Settings
         origin: [0.5, 0.5]
     };
 
+    static gameover =
+    {
+        txt: {
+            txt: ' Game Over ',
+            iniX: Math.floor(Settings.screen.width / 2),
+            iniY: Math.floor(Settings.screen.height / 2),
+            scl: [1, 1],
+            origin: [0.5, 0.5]
+        }
+    };
+
     static pausa =
     {
         inicial: {

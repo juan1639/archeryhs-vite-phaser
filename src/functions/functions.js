@@ -1,39 +1,69 @@
 import { Settings } from "../scenes/settings";
-import { Textos } from "../components/textos";
 
 function check_controlesKeyboard(relatedScene)
-  {
-    if (!Settings.controlElegido.keyboard) return;
+{
+  if (!Settings.controlElegido.keyboard) return;
 
-    const maxGrados = Settings.flecha.maxGrados;
-    const tecla = Settings.queTeclaPulsar[0];
+  const maxGrados = Settings.flecha.maxGrados;
+  const tecla = Settings.queTeclaPulsar[0];
 
-    if (
-      relatedScene.flecha.get().getData('estado') === 'en-arco' &&
-      relatedScene.controles[tecla].isDown
-    ){
-      relatedScene.flecha.get().setData('estado', 'en-movimiento');
-      relatedScene.arco.get().setData('estado', 'sin-flecha');
-      relatedScene.arco.update(relatedScene.arco.get().getData('estado'));
-      play_sonidos(relatedScene.sonido_arrow1, false, 0.9);
-    }
-
-    if (
-      (relatedScene.flecha.get().getData('estado') === 'en-movimiento' &&
-      relatedScene.controles[tecla].isUp) ||
-      (relatedScene.flecha.get().getData('estado') === 'en-movimiento' &&
-      Settings.getGrados() >= maxGrados)
-    ){
-      relatedScene.flecha.get().setData('estado', 'en-movimiento-2');
-    }
-
-    if (relatedScene.flecha.get().getData('estado') === 'en-movimiento')
-    {
-      Settings.setGrados(Settings.getGrados() + 1);
-      // console.log(Settings.getGrados());
-      relatedScene.marcadorGrados.update('Deg: ', `${Settings.getGrados()}º`);
-    }
+  if (
+    relatedScene.flecha.get().getData('estado') === 'en-arco' &&
+    relatedScene.controles[tecla].isDown
+  ){
+    relatedScene.flecha.get().setData('estado', 'en-movimiento');
+    relatedScene.arco.get().setData('estado', 'sin-flecha');
+    relatedScene.arco.update(relatedScene.arco.get().getData('estado'));
+    play_sonidos(relatedScene.sonido_arrow1, false, 0.9);
   }
+
+  if (
+    (relatedScene.flecha.get().getData('estado') === 'en-movimiento' &&
+    relatedScene.controles[tecla].isUp) ||
+    (relatedScene.flecha.get().getData('estado') === 'en-movimiento' &&
+    Settings.getGrados() >= maxGrados)
+  ){
+    relatedScene.flecha.get().setData('estado', 'en-movimiento-2');
+  }
+
+  if (relatedScene.flecha.get().getData('estado') === 'en-movimiento')
+  {
+    Settings.setGrados(Settings.getGrados() + 1);
+    // console.log(Settings.getGrados());
+    relatedScene.marcadorGrados.update('Deg: ', `${Settings.getGrados()}º`);
+  }
+}
+
+function check_controlesMobile(relatedScene)
+{
+  if (!Settings.controlElegido.mobile) return;
+
+  const maxGrados = Settings.flecha.maxGrados;
+
+  if (
+    relatedScene.flecha.get().getData('estado') === 'en-arco' &&
+    relatedScene.input.activePointer.isDown
+  ){
+    relatedScene.flecha.get().setData('estado', 'en-movimiento');
+    play_sonidos(relatedScene.sonido_arrow1, false, 0.9);
+  }
+
+  if (
+    (relatedScene.flecha.get().getData('estado') === 'en-movimiento' &&
+    !relatedScene.input.activePointer.isDown) ||
+    (relatedScene.flecha.get().getData('estado') === 'en-movimiento' &&
+    Settings.getGrados() >= maxGrados)
+  ){
+    relatedScene.flecha.get().setData('estado', 'en-movimiento-2');
+  }
+
+  if (relatedScene.flecha.get().getData('estado') === 'en-movimiento')
+  {
+    Settings.setGrados(Settings.getGrados() + 1);
+    // console.log(Settings.getGrados());
+    relatedScene.marcadorGrados.update('Deg: ', `${Settings.getGrados()}º`);
+  }
+}
 
 function particulas(x, y, particula, vel, span, size, color, sprite, bool, scene)
 {
@@ -100,6 +130,7 @@ function play_sonidos(id, loop, volumen)
 
 export {
   check_controlesKeyboard,
+  check_controlesMobile,
   particulas,
   fetchRecords,
   play_sonidos

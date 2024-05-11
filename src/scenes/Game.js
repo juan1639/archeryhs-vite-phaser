@@ -13,9 +13,11 @@ import { Flecha, CargadorFlechas } from '../components/jugador.js';
 import { Diana } from '../components/diana.js';
 import { DianaShow } from '../components/dianashow.js';
 import { BotonNuevaPartida, BotonFullScreen } from '../components/boton-nuevapartida.js';
+import { GameOver } from '../components/game-over.js';
 
 import {
   check_controlesKeyboard,
+  check_controlesMobile,
   play_sonidos
 } from '../functions/functions.js';
 
@@ -40,6 +42,8 @@ export class Game extends Scene
     this.diana = new Diana(this);
     this.dianashow = new DianaShow(this);
 
+    this.gameover = new GameOver(this);
+
     this.instanciar_marcadores();
   }
 
@@ -62,7 +66,7 @@ export class Game extends Scene
     this.marcadorCurrent.create();
     this.botonfullscreen.create();
     // this.botonesc.create();
-
+    
     this.texto_info('Info');
 
     this.controles = this.input.keyboard.createCursorKeys();
@@ -87,43 +91,12 @@ export class Game extends Scene
     if (!Settings.isPausaInicial() && !Settings.isGameOver())
     {
       check_controlesKeyboard(this);
-      this.check_controlesMobile();
+      check_controlesMobile(this);
 
       this.flecha.update();
       this.diana.update();
 
       console.log(this.flecha.get().getData('estado'));
-    }
-  }
-
-  check_controlesMobile()
-  {
-    if (!Settings.controlElegido.mobile) return;
-
-    const maxGrados = Settings.flecha.maxGrados;
-
-    if (
-      this.flecha.get().getData('estado') === 'en-arco' &&
-      this.input.activePointer.isDown
-    ){
-      this.flecha.get().setData('estado', 'en-movimiento');
-      play_sonidos(this.sonido_arrow1, false, 0.9);
-    }
-
-    if (
-      (this.flecha.get().getData('estado') === 'en-movimiento' &&
-      !this.input.activePointer.isDown) ||
-      (this.flecha.get().getData('estado') === 'en-movimiento' &&
-      Settings.getGrados() >= maxGrados)
-    ){
-      this.flecha.get().setData('estado', 'en-movimiento-2');
-    }
-
-    if (this.flecha.get().getData('estado') === 'en-movimiento')
-    {
-      Settings.setGrados(Settings.getGrados() + 1);
-      // console.log(Settings.getGrados());
-      this.marcadorGrados.update('Deg: ', `${Settings.getGrados()}º`);
     }
   }
 
@@ -295,5 +268,6 @@ export class Game extends Scene
     this.sonido_getReady = this.sound.add('get-ready');
     this.sonido_gooo = this.sound.add('gooo');
     this.sonido_fireworks = this.sound.add('fireworks');
+    this.sonido_gameover = this.sound.add('gameover');
   }
 }
