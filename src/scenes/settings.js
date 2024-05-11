@@ -26,6 +26,7 @@ export class Settings
     };
 
     static puntos = 0;
+    static showCurrent = 0;
     static nombre = 'IMI';
     static hi = 3000;
     static top = [3000, 2000, 1800, 1750, 1500, 1400, 1300, 1250, 1100, 1000];
@@ -145,6 +146,11 @@ export class Settings
         return Settings.puntos;
     }
 
+    static getShowCurrent()
+    {
+        return Settings.showCurrent;
+    }
+
     static getNombre()
     {
         return Settings.nombre;
@@ -206,6 +212,11 @@ export class Settings
     static setPuntos(ptos)
     {
         Settings.puntos = ptos;
+    }
+
+    static setShowCurrent(current)
+    {
+        Settings.showCurrent = current;
     }
 
     static setNombre(nameRecord)

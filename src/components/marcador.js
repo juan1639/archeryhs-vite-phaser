@@ -18,6 +18,7 @@ export class Marcador
         if (id === 1) texto = `${txt}${Settings.getNombre()}`;
         if (id === 2) texto = `${txt}${Settings.getRecord()}`;
         if (id === 3) texto = `${txt}${Settings.getGrados()}º`;
+        if (id === 4) texto = `${txt}${Settings.getShowCurrent()}`;
 
         this.marcador = this.relatedScene.add.text(x, y, texto, {
             fontSize: size + 'px',

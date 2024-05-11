@@ -51,6 +51,8 @@ export class Flecha
             {
                 this.flecha.setData('estado', 'clavada-no');
             }
+
+            this.relatedScene.marcadorCurrent.update('Pts: ', `${Settings.getShowCurrent()}`);
         }
 
         if (this.flecha.getData('estado') === 'clavada')
