@@ -32,6 +32,20 @@ export class GameOver
             targets: this.txtgameover.get(), alpha: 1, duration: 2500
         });
 
+        this.txtCongrats = new Textos(this.relatedScene, {
+            x: iniX,
+            y: 70,
+            txt: ' Congratulations! Put your Initials!',
+            size: 40, color: '#dd9', style: 'bold',
+            stroke: '#1e1', sizeStroke: 6,
+            shadowOsx: 2, shadowOsy: 2, shadowColor: '#111111',
+            bool1: false, bool2: true, origin: [0.5, 0.5],
+            elastic: Math.floor(top * 0.23), dura: 3500
+          });
+      
+          this.txtCongrats.create();
+          this.txtCongrats.get().setAlpha(0).setDepth(Settings.depth.textos + 20);
+
         this.relatedScene.time.delayedCall(2000, () =>
         {
             const puntos = Settings.getPuntos();
