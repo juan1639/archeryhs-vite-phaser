@@ -54,7 +54,7 @@ export class GameOver
 
         console.log(this.txtgameover);
 
-        this.putInitialsToSend(left, top);
+        this.putInitialsToSend(iniX, Math.floor(iniY / 2));
         
         if (!this.checkNewRecordOrTop()) this.send_score('IMI');
     }
