@@ -137,6 +137,32 @@ export class Settings
         controles: 800,
         textos: 900
     };
+
+    static infoDegrees =
+    [
+        'Perfect degrees!',
+        'Nice degrees',
+        'Nice degrees',
+        'Nice degrees',
+        'Nice degrees',
+        'Nice degrees',
+        'Try to improve degrees',
+        'Try to improve degrees',
+        'Try to improve degrees',
+        'Try to improve degrees',
+        'Try to improve degrees',
+        'Bad degrees',
+        'Bad degrees',
+        'Bad degrees',
+        'Bad degrees',
+        'Bad degrees',
+        'Very bad degrees',
+        'Very bad degrees',
+        'Very bad degrees',
+        'Very bad degrees',
+        'Very bad degrees',
+        'Very bad degrees'
+    ];
     
     static audio =
     {

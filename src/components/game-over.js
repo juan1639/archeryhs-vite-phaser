@@ -34,7 +34,16 @@ export class GameOver
 
         this.relatedScene.time.delayedCall(2000, () =>
         {
-            play_sonidos(this.relatedScene.sonido_aplausosBirdie, false, 0.9);
+            const puntos = Settings.getPuntos();
+
+            if (puntos >= 2000)
+            {
+                play_sonidos(this.relatedScene.sonido_aplausosEagle, false, 0.9);
+            }
+            else if (puntos >= 1000)
+            {
+                play_sonidos(this.relatedScene.sonido_aplausosBirdie, false, 0.9);
+            }
         });
 
         this.relatedScene.time.delayedCall(3500, () =>

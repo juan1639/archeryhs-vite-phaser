@@ -1,4 +1,5 @@
 import { Settings } from "../scenes/settings";
+import { Textos } from '../components/textos.js';
 
 function check_controlesKeyboard(relatedScene)
 {
@@ -25,6 +26,7 @@ function check_controlesKeyboard(relatedScene)
     Settings.getGrados() >= maxGrados)
   ){
     relatedScene.flecha.get().setData('estado', enMovimiento2);
+    txtInfoDegrees(relatedScene, calc_indexTxtInfoDegrees());
   }
 
   if (relatedScene.flecha.get().getData('estado') === enMovimiento)
@@ -59,6 +61,7 @@ function check_controlesMobile(relatedScene)
     Settings.getGrados() >= maxGrados)
   ){
     relatedScene.flecha.get().setData('estado', enMovimiento2);
+    txtInfoDegrees(relatedScene, calc_indexTxtInfoDegrees());
   }
 
   if (relatedScene.flecha.get().getData('estado') === enMovimiento)
@@ -67,6 +70,34 @@ function check_controlesMobile(relatedScene)
     // console.log(Settings.getGrados());
     relatedScene.marcadorGrados.update('Deg: ', `${Settings.getGrados()}º`);
   }
+}
+
+function txtInfoDegrees(relatedScene, infoDegrees)
+{
+  const infoTxt = Settings.infoDegrees[infoDegrees];
+
+  const txtDegrees = new Textos(relatedScene, {
+    x: Math.floor(relatedScene.sys.game.config.width / 2.8),
+    y: Math.floor(relatedScene.sys.game.config.height / 5),
+    txt: infoTxt,
+    size: 30, color: '#ffa', style: 'bold',
+    stroke: '#ee1', sizeStroke: 12,
+    shadowOsx: 2, shadowOsy: 2, shadowColor: '#111111',
+    bool1: false, bool2: true, origin: [0, 0.5],
+    elastic: false, dura: 0
+  });
+  
+  txtDegrees.create();
+  txtDegrees.get().setDepth(Settings.depth.textos);
+
+  relatedScene.tweens.add({
+    targets: txtDegrees.get(), alpha: 0, duration: 2500
+  });
+}
+
+function calc_indexTxtInfoDegrees()
+{
+  return Math.abs(Settings.flecha.perfectGrados - Settings.getGrados());
 }
 
 function particulas(x, y, particula, vel, span, size, color, sprite, bool, scene)
