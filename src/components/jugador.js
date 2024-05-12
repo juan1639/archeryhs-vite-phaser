@@ -53,13 +53,9 @@ export class Flecha
                 Settings.setPuntos(Settings.getPuntos() + Settings.getShowCurrent());
                 this.relatedScene.marcadorPtos.update(Settings.getTxtScore(), Settings.getPuntos());
 
-                const tweensCurrent = this.relatedScene.tweens.add({
-                    targets: this.relatedScene.marcadorCurrent.get(),
-                    scale: 1.5,
-                    ease: 'elastic',
-                    yoyo: true,
-                    duration: 900
-                });
+                this.showTarget();
+
+                const tweensCurrent = this.make_tweensCurrent();
 
                 play_sonidos(this.sonido_arrow2, false, 0.9);
             }
@@ -102,6 +98,25 @@ export class Flecha
         const substract = perfectGrados - Math.abs(perfectGrados - Settings.getGrados());
 
         return substract * 6; // *6 to make proportional to currentScore
+    }
+
+    showTarget()
+    {
+        const osX = this.relatedScene.diana.get().y - this.flecha.y;
+        const osY = (Settings.flecha.perfectGrados - Settings.getGrados()) * 6;
+
+        this.relatedScene.dianashow.update(osX, osY);
+    }
+
+    make_tweensCurrent()
+    {
+        return this.relatedScene.tweens.add({
+            targets: this.relatedScene.marcadorCurrent.get(),
+            scale: 1.5,
+            ease: 'elastic',
+            yoyo: true,
+            duration: 900
+        });
     }
 
     get()
