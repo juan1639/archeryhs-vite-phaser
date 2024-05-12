@@ -1,4 +1,4 @@
-import { play_sonidos } from '../functions/functions.js';
+import { play_sonidos, particulas } from '../functions/functions.js';
 import { Settings } from '../scenes/settings.js';
 import { Textos } from './textos.js';
 
