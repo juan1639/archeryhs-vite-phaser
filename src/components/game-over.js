@@ -13,7 +13,7 @@ export class GameOver
     {
         this.sonido_numkey = this.relatedScene.sound.add('numkey');
         this.sonido_key = this.relatedScene.sound.add('key');
-        
+
         const scale = Settings.getScaleGame();
         const {txt, iniX, iniY, scl, origin} = Settings.gameover.txt;
         
@@ -88,7 +88,7 @@ export class GameOver
         this.makeTxtNameToSend(pacX, pacY, size, osX, osY, oriX, oriY, color, alpha);
         this.bandera_send = false;
 
-        const x = pacX - Math.floor(this.relatedScene.sys.game.config.width / 2.3);
+        const x = pacX - Math.floor(this.relatedScene.sys.game.config.width / 2);
         let columna = 0;
 
         for (let i = 0; i < letras.length; i ++)
