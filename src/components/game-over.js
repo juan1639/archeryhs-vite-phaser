@@ -11,6 +11,9 @@ export class GameOver
 
     create()
     {
+        this.sonido_numkey = this.relatedScene.sound.add('numkey');
+        this.sonido_key = this.relatedScene.sound.add('key');
+        
         const scale = Settings.getScaleGame();
         const {txt, iniX, iniY, scl, origin} = Settings.gameover.txt;
         

@@ -69,7 +69,15 @@ export class MainMenu extends Scene
 
                 top5.push(puntos);
 
-                construirTxt += ` ${indice}.  ${nombre}   ${puntos}\n`;
+                if (indice >= 10)
+                {
+                    construirTxt += `${indice}.  ${nombre}   ${puntos}\n`;
+                }
+                else
+                {
+                    construirTxt += ` ${indice}.  ${nombre}   ${puntos}\n`;
+                }
+
                 indice ++;
             }
 
