@@ -217,7 +217,7 @@ export class GameOver
 
     checkNewRecordOrTop()
     {
-        const lenghtOfTopToEntry = 5;
+        const lenghtOfTopToEntry = 10;
         console.log(Settings.getTop()[lenghtOfTopToEntry - 1]);
 
         if (Settings.getPuntos() >= Settings.getTop()[lenghtOfTopToEntry - 1]) return true;
