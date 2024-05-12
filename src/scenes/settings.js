@@ -173,7 +173,7 @@ export class Settings
 
     static URL =
     {
-        URL_G: 'https://ejemplo-node-railway-production.up.railway.app/all',
+        URL_G: 'https://ejemplo-node-railway-production.up.railway.app/hiscores',
         URL_P: 'https://ejemplo-node-railway-production.up.railway.app/create',
     };
 

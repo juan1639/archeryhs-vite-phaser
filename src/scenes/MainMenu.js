@@ -36,7 +36,7 @@ export class MainMenu extends Scene
             x: Math.floor(this.sys.game.config.width / 2),
             y: 0,
             txt: ' Tabla records ',
-            size: 28, color: '#ffa', style: 'bold',
+            size: 24, color: '#ffa', style: 'bold',
             stroke: '#5e1', sizeStroke: 7,
             shadowOsx: 2, shadowOsy: 2, shadowColor: '#111',
             bool1: false, bool2: true, origin: [0.5, 0.5],
@@ -48,7 +48,7 @@ export class MainMenu extends Scene
 
     create()
     {
-        /* this.hacerFetchRecords = async () => fetchRecords()
+        this.hacerFetchRecords = async () => fetchRecords()
         .then(result =>
         {
             this.recordsTxtData = result;
@@ -78,7 +78,7 @@ export class MainMenu extends Scene
         })
         .catch(error => console.warn(error));
 
-        this.hacerFetchRecords(); */
+        this.hacerFetchRecords();
 
         Settings.audio.overture = this.sound.add('overture');
 
