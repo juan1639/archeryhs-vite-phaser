@@ -151,7 +151,7 @@ export class GameOver
 
                 console.log(args.body);
 
-                const response = await fetch(Settings.RECORDS.URL_P, args);
+                const response = await fetch(Settings.getUrlSendscore(), args);
 
                 const data = await response.json();
 
